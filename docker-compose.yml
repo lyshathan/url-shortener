@@ -1,0 +1,63 @@
+services:
+  db:
+    image: postgres:16
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user_password
+      POSTGRES_DB: shortUrl_db
+    networks:
+      - shortUrl
+    volumes:
+      - shortUrl-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d shortUrl_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    depends_on:
+      db:
+        condition: service_healthy
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://user:user_password@db:5432/shortUrl_db?schema=public
+    networks:
+      - shortUrl
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    depends_on:
+      db:
+        condition: service_healthy
+      backend:
+        condition: service_started
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:3000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3001
+    networks:
+      - shortUrl
+
+
+volumes:
+  shortUrl-data:
+
+networks:
+  shortUrl:
+    driver: bridge
