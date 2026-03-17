@@ -1,0 +1,40 @@
+services:
+  db-test:
+    image: postgres:16
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user_password
+      POSTGRES_DB: shortUrl_test_db
+    networks:
+      - shortUrl-test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d shortUrl_test_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend-test:
+    depends_on:
+      db-test:
+        condition: service_healthy
+    build:
+      context: ./backend
+      dockerfile: test/Dockerfile
+    environment:
+      - NODE_ENV=test
+      - DATABASE_URL=postgresql://user:user_password@db-test:5432/shortUrl_test_db?schema=public
+    networks:
+      - shortUrl-test
+    volumes:
+      - ./backend:/app
+    command: test
+
+volumes:
+  shortUrl-test-data:
+
+networks:
+  shortUrl-test:
+    driver: bridge
