@@ -31,7 +31,7 @@ export class ShortUrlService {
 
 	async create(data: IcreateDTO): Promise<ShortUrl> {
 		const {initialUrl, shortUrl} = data;
-		let existing = await this.getByShortUrl(shortUrl);
+		const existing = await this.getByShortUrl(shortUrl);
 		if (existing) {
 			throw new HttpException('Url already exists', HttpStatus.CONFLICT);
 		}
@@ -85,7 +85,7 @@ export class ShortUrlService {
 	}
 
 	async delete(id: number): Promise<ShortUrl> {
-		let existing = await this.getById(id);
+		const existing = await this.getById(id);
 		if (!existing)
 			throw new HttpException('This short url does not exist', HttpStatus.NOT_FOUND);
 		return this.prisma.shortUrl.delete({

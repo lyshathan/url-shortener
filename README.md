@@ -4,13 +4,6 @@ URL Shortener - A small full-stack application for creating custom shoretened ur
 
 Build with **NestJS** and **React**, with a **postgreSQL** database.
 
-## Project setup
-
-```bash
-$ cd backend && npm install
-$ cd frontend && npm install
-```
-
 ## Quick Start
 
 **1. Clone the repository**
@@ -19,7 +12,14 @@ git clone <repository-url>
 cd short-url
 ```
 
-**2. Run project**
+**2. Project setup**
+
+```bash
+$ cd backend && npm install
+$ cd frontend && npm install
+```
+
+**3. Run project**
 
 ```bash
 # development mode (all services with docker-compose)
@@ -31,6 +31,8 @@ $ make
 # wait few seconds, then the web app should be available at:
 # http://localhost:3001/ on dev mode
 # http://localhost/ on prod mode
+# if you get a network error make sure that the backend is ready with
+$ make blogs
 
 
 # or run services individually

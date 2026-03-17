@@ -20,7 +20,6 @@ function Row({customUrl, deleteUrl}:
 		deleteUrl: (id: number) => Promise<void>
 	}) {
 
-
 	async function handleDelete() {
 		try {
 			await deleteUrl(customUrl.id)
@@ -29,10 +28,25 @@ function Row({customUrl, deleteUrl}:
 		}
 	}
 
+	async function handleCopyUrl() {
+		const urlToCopy = `${APP_URL}/${customUrl.shortUrl}`;
+		try {
+			await navigator.clipboard.writeText(urlToCopy);
+		} catch(error) {
+			console.error("Failed to copy:", error);
+		}
+	}
+
 	return (
 		<TableRow>
-			<TableCell className="font-semibold">{customUrl.initialUrl}</TableCell>
-			<TableCell className="text-center">{APP_URL}/{customUrl.shortUrl}</TableCell>
+			<TableCell className="max-w-50 truncate font-semibold">{customUrl.initialUrl}</TableCell>
+			<TableCell 
+				onClick={handleCopyUrl}
+				className="max-w-50 truncate text-center cursor-pointer hover:bg-gray-100 transition-colors"
+				title="Click to copy"
+			>
+				{APP_URL}/{customUrl.shortUrl}
+			</TableCell>
 			<TableCell className="text-center text-sm text-gray-400">{new Date(customUrl.createdAt).toLocaleDateString('fr-FR')}</TableCell>
 			<TableCell className="text-center text-sm text-gray-400">{new Date(customUrl.expiresAt).toLocaleDateString('fr-FR')}</TableCell>
 			<TableCell className="text-right">

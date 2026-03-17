@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import type React from "react"
-import { cn } from "~/lib/utils"
+import { cn } from "../../lib/utils"
 
 export interface BackgroundGradientProps {
   className?: string
@@ -13,7 +13,7 @@ export const BackgroundGradient = ({ className, children }: BackgroundGradientPr
   return (
     <div className={cn("fixed inset-0 overflow-hidden bg-neutral-950", className)}>
       {/* Base dark gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950" />
+      <div className="absolute inset-0 bg-linear-to-br from-neutral-950 via-neutral-900 to-neutral-950" />
 
       {/* Animated gradient blobs */}
       <motion.div
