@@ -22,7 +22,9 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     environment:
