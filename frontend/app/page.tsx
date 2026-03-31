@@ -6,7 +6,7 @@ import Welcome from "@/components/Welcome";
 import CustomUrlTable from "@/components/CustomUrlTable";
 import { Button } from "@/components/ui/button";
 import AddUrlDialog from "@/components/AddUrlDialog";
-import { UrlService } from "@/lib/services/urlServce";
+import { IUpdateUrlDto, UrlService } from "@/lib/services/urlServce";
 
 export interface ICustomUrl {
 	id: number;
@@ -15,6 +15,7 @@ export interface ICustomUrl {
 	createdAt: string;
 	updatedAt: string;
 	expiresAt: string;
+	count: number;
 }
 
 export interface IAddNewUrlData {
@@ -45,8 +46,8 @@ export default function Home() {
 		await fetchCustomUrls();
 	}
 
-	async function updateUrl(id: string, initialUrl: string, shortUrl: string) {
-		await UrlService.updateUrl(id, initialUrl, shortUrl);
+	async function updateUrl(dto: IUpdateUrlDto) {
+		await UrlService.updateUrl(dto);
 		await fetchCustomUrls();
 	}
 
@@ -65,7 +66,7 @@ export default function Home() {
 				<div className="h-screen w-screen flex flex-col justify-center items-center gap-10">
 					<h1 className="text-3xl text-white font-semibold text-center">Your custom urls</h1>
 					<AddUrlDialog customUrls={customUrls} addNewUrl={addNewUrl}/>
-					<CustomUrlTable customUrls={customUrls} deleteUrl={deleteUrl}/>
+					<CustomUrlTable customUrls={customUrls} deleteUrl={deleteUrl} updateUrl={updateUrl}/>
 				</div>
 			}
 		</>

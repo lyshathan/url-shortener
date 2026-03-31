@@ -18,6 +18,17 @@ services:
       timeout: 5s
       retries: 5
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - shortUrl
+    depends_on:
+      db:
+        condition: service_healthy
+
   backend:
     depends_on:
       db:

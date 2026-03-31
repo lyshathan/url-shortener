@@ -28,10 +28,12 @@ export type AggregateShortUrl = {
 
 export type ShortUrlAvgAggregateOutputType = {
   id: number | null
+  count: number | null
 }
 
 export type ShortUrlSumAggregateOutputType = {
   id: number | null
+  count: number | null
 }
 
 export type ShortUrlMinAggregateOutputType = {
@@ -41,6 +43,7 @@ export type ShortUrlMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   expiresAt: Date | null
+  count: number | null
 }
 
 export type ShortUrlMaxAggregateOutputType = {
@@ -50,6 +53,7 @@ export type ShortUrlMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   expiresAt: Date | null
+  count: number | null
 }
 
 export type ShortUrlCountAggregateOutputType = {
@@ -59,16 +63,19 @@ export type ShortUrlCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   expiresAt: number
+  count: number
   _all: number
 }
 
 
 export type ShortUrlAvgAggregateInputType = {
   id?: true
+  count?: true
 }
 
 export type ShortUrlSumAggregateInputType = {
   id?: true
+  count?: true
 }
 
 export type ShortUrlMinAggregateInputType = {
@@ -78,6 +85,7 @@ export type ShortUrlMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   expiresAt?: true
+  count?: true
 }
 
 export type ShortUrlMaxAggregateInputType = {
@@ -87,6 +95,7 @@ export type ShortUrlMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   expiresAt?: true
+  count?: true
 }
 
 export type ShortUrlCountAggregateInputType = {
@@ -96,6 +105,7 @@ export type ShortUrlCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   expiresAt?: true
+  count?: true
   _all?: true
 }
 
@@ -192,6 +202,7 @@ export type ShortUrlGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   expiresAt: Date | null
+  count: number
   _count: ShortUrlCountAggregateOutputType | null
   _avg: ShortUrlAvgAggregateOutputType | null
   _sum: ShortUrlSumAggregateOutputType | null
@@ -224,6 +235,7 @@ export type ShortUrlWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"ShortUrl"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShortUrl"> | Date | string
   expiresAt?: Prisma.DateTimeNullableFilter<"ShortUrl"> | Date | string | null
+  count?: Prisma.IntFilter<"ShortUrl"> | number
 }
 
 export type ShortUrlOrderByWithRelationInput = {
@@ -233,6 +245,7 @@ export type ShortUrlOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  count?: Prisma.SortOrder
 }
 
 export type ShortUrlWhereUniqueInput = Prisma.AtLeast<{
@@ -245,6 +258,7 @@ export type ShortUrlWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"ShortUrl"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShortUrl"> | Date | string
   expiresAt?: Prisma.DateTimeNullableFilter<"ShortUrl"> | Date | string | null
+  count?: Prisma.IntFilter<"ShortUrl"> | number
 }, "id" | "shortUrl">
 
 export type ShortUrlOrderByWithAggregationInput = {
@@ -254,6 +268,7 @@ export type ShortUrlOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  count?: Prisma.SortOrder
   _count?: Prisma.ShortUrlCountOrderByAggregateInput
   _avg?: Prisma.ShortUrlAvgOrderByAggregateInput
   _max?: Prisma.ShortUrlMaxOrderByAggregateInput
@@ -271,6 +286,7 @@ export type ShortUrlScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ShortUrl"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ShortUrl"> | Date | string
   expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ShortUrl"> | Date | string | null
+  count?: Prisma.IntWithAggregatesFilter<"ShortUrl"> | number
 }
 
 export type ShortUrlCreateInput = {
@@ -279,6 +295,7 @@ export type ShortUrlCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   expiresAt?: Date | string | null
+  count?: number
 }
 
 export type ShortUrlUncheckedCreateInput = {
@@ -288,6 +305,7 @@ export type ShortUrlUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   expiresAt?: Date | string | null
+  count?: number
 }
 
 export type ShortUrlUpdateInput = {
@@ -296,6 +314,7 @@ export type ShortUrlUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  count?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ShortUrlUncheckedUpdateInput = {
@@ -305,6 +324,7 @@ export type ShortUrlUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  count?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ShortUrlCreateManyInput = {
@@ -314,6 +334,7 @@ export type ShortUrlCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   expiresAt?: Date | string | null
+  count?: number
 }
 
 export type ShortUrlUpdateManyMutationInput = {
@@ -322,6 +343,7 @@ export type ShortUrlUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  count?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ShortUrlUncheckedUpdateManyInput = {
@@ -331,6 +353,7 @@ export type ShortUrlUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  count?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ShortUrlCountOrderByAggregateInput = {
@@ -340,10 +363,12 @@ export type ShortUrlCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  count?: Prisma.SortOrder
 }
 
 export type ShortUrlAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  count?: Prisma.SortOrder
 }
 
 export type ShortUrlMaxOrderByAggregateInput = {
@@ -353,6 +378,7 @@ export type ShortUrlMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  count?: Prisma.SortOrder
 }
 
 export type ShortUrlMinOrderByAggregateInput = {
@@ -362,10 +388,12 @@ export type ShortUrlMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  count?: Prisma.SortOrder
 }
 
 export type ShortUrlSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  count?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -397,6 +425,7 @@ export type ShortUrlSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   expiresAt?: boolean
+  count?: boolean
 }, ExtArgs["result"]["shortUrl"]>
 
 export type ShortUrlSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -406,6 +435,7 @@ export type ShortUrlSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   expiresAt?: boolean
+  count?: boolean
 }, ExtArgs["result"]["shortUrl"]>
 
 export type ShortUrlSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -415,6 +445,7 @@ export type ShortUrlSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   expiresAt?: boolean
+  count?: boolean
 }, ExtArgs["result"]["shortUrl"]>
 
 export type ShortUrlSelectScalar = {
@@ -424,9 +455,10 @@ export type ShortUrlSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   expiresAt?: boolean
+  count?: boolean
 }
 
-export type ShortUrlOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "initialUrl" | "shortUrl" | "createdAt" | "updatedAt" | "expiresAt", ExtArgs["result"]["shortUrl"]>
+export type ShortUrlOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "initialUrl" | "shortUrl" | "createdAt" | "updatedAt" | "expiresAt" | "count", ExtArgs["result"]["shortUrl"]>
 
 export type $ShortUrlPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ShortUrl"
@@ -438,6 +470,7 @@ export type $ShortUrlPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     createdAt: Date
     updatedAt: Date
     expiresAt: Date | null
+    count: number
   }, ExtArgs["result"]["shortUrl"]>
   composites: {}
 }
@@ -867,6 +900,7 @@ export interface ShortUrlFieldRefs {
   readonly createdAt: Prisma.FieldRef<"ShortUrl", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ShortUrl", 'DateTime'>
   readonly expiresAt: Prisma.FieldRef<"ShortUrl", 'DateTime'>
+  readonly count: Prisma.FieldRef<"ShortUrl", 'Int'>
 }
     
 

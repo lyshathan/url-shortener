@@ -27,4 +27,7 @@ export class IupdateDTO {
 	@IsOptional()
 	@IsUrl()
 	shortUrl?: string;
+
+	@IsOptional()
+	count?: number;
 };

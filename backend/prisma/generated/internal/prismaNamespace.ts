@@ -529,7 +529,8 @@ export const ShortUrlScalarFieldEnum = {
   shortUrl: 'shortUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  expiresAt: 'expiresAt'
+  expiresAt: 'expiresAt',
+  count: 'count'
 } as const
 
 export type ShortUrlScalarFieldEnum = (typeof ShortUrlScalarFieldEnum)[keyof typeof ShortUrlScalarFieldEnum]

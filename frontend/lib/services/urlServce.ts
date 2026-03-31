@@ -1,6 +1,14 @@
 import { ICustomUrl } from "@/app/page";
+import { count } from "console";
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
+export interface IUpdateUrlDto {
+	id: string,
+	initialUrl: string,
+	shortUrl: string,
+	count: number,
+}
 
 async function getAllUrls() {
 	const result = await fetch(`${NEXT_PUBLIC_API_URL}/shortUrl`);
@@ -45,15 +53,16 @@ async function createUrl(initialUrl: string, shortUrl: string) {
 	return data;
 }
 
-async function updateUrl(id: string, initialUrl: string, shortUrl: string) {
-	const result = await fetch (`${NEXT_PUBLIC_API_URL}/shortUrl/${id}`, {
+async function updateUrl(dto: IUpdateUrlDto) {
+	const result = await fetch (`${NEXT_PUBLIC_API_URL}/shortUrl/${dto.id}`, {
 		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			initialUrl,
-			shortUrl
+			initialUrl: dto.initialUrl,
+			shortUrl: dto.shortUrl,
+			count: dto.count,
 		})
 	});
 	const data = await result.json();

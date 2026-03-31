@@ -48,7 +48,7 @@ export class ShortUrlService {
 	}
 
 	async update(id: number, data: IupdateDTO): Promise<ShortUrl> {
-		const {initialUrl, shortUrl} = data;
+		const {initialUrl, shortUrl, count} = data;
 		
 		const existing = await this.getById(id);
 		if (!existing)
@@ -73,10 +73,11 @@ export class ShortUrlService {
 		if (shortUrl !== undefined) {
 			updateData.shortUrl = shortUrl.trim();
 		}
+
+		if (count)
+			updateData.count = count;
 		
-		if (Object.keys(updateData).length > 0) {
-			updateData.expiresAt = new Date(Date.now() + TEN_DAYS_MS);
-		}
+		updateData.expiresAt = new Date(Date.now() + TEN_DAYS_MS);
 		
 		return this.prisma.shortUrl.update({
 			where: {id},
