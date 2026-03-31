@@ -43,7 +43,7 @@ function UpdateUrlDialog({currentCustomUrl, updateNewUrl}:
 				id: currentCustomUrl.id.toString(), 
 				initialUrl, 
 				shortUrl,
-				count: 1
+				count: currentCustomUrl.count + 1
 			});
 			formRef.current.reset();
 			setShortUrl('');
